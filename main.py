@@ -28,4 +28,4 @@ today_tmp_max, today_tmp_min = weather.get_temp(key, 'changchun')
 aqi_json = weather.get_aqi(key, 'changchun')
 city_aqi = aqi_json['air_now_city']
 city_air_condition = aqi_json['qlty']
-print('你现在在'+location+'，最高气温'+str(today_tmp_max)+'度，'+'最低气温'str(today_tmp_min)+'度，'+'空气质量'+ str(city_air_condition)+'AQI'+str(city_aqi))
+print('你现在在' + location + '，最高气温' + str(today_tmp_max) + '度，' + '最低气温' + str(today_tmp_min) + '度，' + '空气质量' + str(city_air_condition) + 'AQI' + str(city_aqi))
