@@ -26,7 +26,7 @@ def get_key():
 
 
 #问候
-current_time = int(time.strftime("%H:%M", time.localtime()))
+current_time = int(time.strftime("%H%M", time.localtime()))
 greetings=''
 if (NIGHTTIME2 < current_time < MORNING_TIME): greetings = '早上好。'
 if (MORNING_TIME < current_time < AM): greetings = '上午好。'
