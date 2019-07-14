@@ -6,11 +6,11 @@ import configparser
 from weather_getter import Weather
 
 location = sys.argv[1]
-MORNING_TIME = '10:00'
-AM = '11:30'
-PM = '14:00'
-NIGHTTIME1 = '17:30'
-NIGHTTIME2 = '5:00'
+MORNING_TIME = 1000
+AM = 1130
+PM = 1400
+NIGHTTIME1 = 1730
+NIGHTTIME2 = 500
 
 
 def get_key():
@@ -26,12 +26,13 @@ def get_key():
 
 
 #问候
-current_time = time.strftime("%H:%M", time.localtime())
+current_time = int(time.strftime("%H:%M", time.localtime()))
+greetings=''
 if (NIGHTTIME2 < current_time < MORNING_TIME): greetings = '早上好。'
 if (MORNING_TIME < current_time < AM): greetings = '上午好。'
 if (AM < current_time < PM): greetings = '中午好。'
 if (PM < current_time < NIGHTTIME1): greetings = '下午好。'
-if (('0:00' < current_time < NIGHTTIME2) or (NIGHTTIME1 < current_time < '24:00')): greetings = '晚上好。'
+if ((000 < current_time < NIGHTTIME2) or (NIGHTTIME1 < current_time < 2400)): greetings = '晚上好。'
 
 #天气
 key = get_key()
