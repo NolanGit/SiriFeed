@@ -6,6 +6,11 @@ import configparser
 from weather_getter import Weather
 
 location = sys.argv[1]
+MORNING_TIME = '10:00'
+AM = '11:30'
+PM = '14:00'
+NIGHTTIME1 = '17:30'
+NIGHTTIME2 = '5:00'
 
 
 def get_key():
@@ -20,8 +25,16 @@ def get_key():
     return key
 
 
-key = get_key()
+#问候
+current_time = time.strftime("%H:%M", time.localtime())
+greetings = '早上好。' if (NIGHTTIME2 < current_time < MORNING_TIME) else ''
+greetings = '上午好。' if (MORNING_TIME < current_time < AM) else ''
+greetings = '中午好。' if (AM < current_time < PM) else ''
+greetings = '下午好。' if (PM < current_time < NIGHTTIME1) else ''
+greetings = '晚上好。' if (('0:00' < current_time < NIGHTTIME2) or (NIGHTTIME1 < current_time < '24:00')) else ''
 
+#天气
+key = get_key()
 weather = Weather()
 today_tmp_max, today_tmp_min = weather.get_temp(key, location)
 aqi_json = weather.get_aqi(key, location)
@@ -30,6 +43,6 @@ city_air_condition = city_air['qlty']
 city_aqi = city_air['aqi']
 comfort, clothes = weather.get_lifestyle(key, location)
 weather_content = '你现在在' + location + '，最高气温' + str(today_tmp_max) + '度，' + '最低气温' + str(today_tmp_min) + '度，' + '空气质量' + str(city_air_condition) + '，AQI' + str(
-    city_aqi) +'。'+ comfort + clothes + '最高气温' + str(today_tmp_max) + '度，' + '最低气温' + str(today_tmp_min) + '度。'
+    city_aqi) + '。' + comfort + clothes + '最高气温' + str(today_tmp_max) + '度，' + '最低气温' + str(today_tmp_min) + '度。'
 
-print(weather_content)
+print(greetings + weather_content)
