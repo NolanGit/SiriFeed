@@ -27,11 +27,11 @@ def get_key():
 
 #问候
 current_time = time.strftime("%H:%M", time.localtime())
-(NIGHTTIME2 < current_time < MORNING_TIME) and greetings = '早上好。'
-(MORNING_TIME < current_time < AM) and greetings = '上午好。'
-(AM < current_time < PM) and greetings = '中午好。'
-(PM < current_time < NIGHTTIME1) and greetings = '下午好。'
-(('0:00' < current_time < NIGHTTIME2) or (NIGHTTIME1 < current_time < '24:00')) and greetings = '晚上好。'
+if (NIGHTTIME2 < current_time < MORNING_TIME): greetings = '早上好。'
+if (MORNING_TIME < current_time < AM): greetings = '上午好。'
+if (AM < current_time < PM): greetings = '中午好。'
+if (PM < current_time < NIGHTTIME1): greetings = '下午好。'
+if (('0:00' < current_time < NIGHTTIME2) or (NIGHTTIME1 < current_time < '24:00')): greetings = '晚上好。'
 
 #天气
 key = get_key()
